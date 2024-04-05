@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -10,7 +11,11 @@ from selenium.webdriver.firefox.service import Service
 print("Abrindo o webdriver")
 gecko_driver_path = "/usr/local/bin/geckodriver"
 service = Service(gecko_driver_path)
-driver = webdriver.Firefox(service=service)
+options = webdriver.FirefoxOptions()
+
+
+
+driver = webdriver.Firefox(service=service, options=options)
 
 
 print(f"{driver} aberto ")
@@ -24,7 +29,7 @@ print(f"Esperando contagem")
 wait = WebDriverWait(driver, 10)
 
 print(f"Contagem finalizada")
-choose_file_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Escolher arquivo')]")))
+#choose_file_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Escolher arquivo')]")))
 print(f"Achando o escolher arquivo na pagina")
 
 # Clique em um elemento diferente que dispara o evento de clique no botão "Escolher arquivo"
@@ -38,18 +43,27 @@ wait = WebDriverWait(driver, 10)
 print(f"Indo clicar no botão")
 choose_file_button_text.click()
 
+file_input = choose_file_button_text
+file_input.send_keys("/workspace/pmirandaf/valida_diploma_xml/diploma.xml")
+file_input.send_keys(Keys.ENTER)
+
 wait = WebDriverWait(driver, 10)
 print(f"botão clicado")
 # Localize o elemento de input do arquivo após clicar no texto
 # Esperamos que o elemento fique visível
 
+print(f"Executou")
 print(f"selecionando arquivo")
-file_input = wait.until(EC.visibility_of_element_located((By.ID, "select-file")))
+#file_input = wait.until(EC.visibility_of_element_located((By.ID, "select-file")))
 print("Clique no arquivo")
 
 # Insira o caminho do arquivo XML que você deseja carregar
 print(f"pegando o diploma")
-file_input.send_keys("home/ubuntu/workspace/pmirandaf/valida_diploma_xml/diploma.xml")
+
+
+
+
+
 
 print(f"diploma selecionado")
 # Espere até que o botão "Verificar" esteja clicável
@@ -80,3 +94,4 @@ else:
 
 # Feche o navegador após terminar
 driver.quit()
+
