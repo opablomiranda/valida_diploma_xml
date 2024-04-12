@@ -9,6 +9,11 @@ readme = "README.md"
 python = "3.12.1"
 selenium = "^4.19.0"
 webdriver-manager = "^4.0.1"
+fastapi = "^0.110.1"
+python-multipart = "^0.0.9"
+uvicorn = "^0.29.0"
+pydantic = "^2.6.4"
+pyvirtualdisplay = "^3.0"
 
 
 [build-system]
