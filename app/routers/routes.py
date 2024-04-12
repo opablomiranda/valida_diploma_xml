@@ -14,13 +14,11 @@ router = APIRouter()
 async def valida_diploma_MEC(file: UploadFile):
     """
     A Rota Valida um diploma no MEC.\n
-    
     Recebe um arquivo de diploma no formato XML, envia-o para o site do MEC para validação e retorna o resultado da validação.\n
     Site onde o é validado:\n 
     https://validadordiplomadigital.mec.gov.br/diploma \n
     Args:
         file.xml (UploadFile): O arquivo de diploma no formato XML.
-
     Returns:
         DiplomaValidationResult: O resultado da validação do diploma.\n
         "valido" : true - Indica um diploma XML validado no MEC que está em Conformidade\n
@@ -29,8 +27,7 @@ async def valida_diploma_MEC(file: UploadFile):
     'http://127.0.0.1:8000/diploma_upload/'  \n
     -H 'accept: application/json'  \n
     -H 'Content-Type: multipart/form-data'  \n
-    -F 'file=@diploma.xml;type=text/xml'
-            
+    -F 'file=@diploma.xml;type=text/xml'            
     """
 
     try:
