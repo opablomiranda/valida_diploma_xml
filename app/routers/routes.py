@@ -1,8 +1,7 @@
 from fastapi import APIRouter, UploadFile, HTTPException, status
 from fastapi.responses import JSONResponse
-from pathlib import Path
-from dependencies.valida_mec import validar_diploma_mec
-from schemas.upload_file import ValidationResult
+from app.dependencies.valida_mec import validar_diploma_mec
+from app.schemas.upload_file import ValidationResult
 import os
 
 
@@ -31,12 +30,15 @@ async def valida_diploma_MEC(file: UploadFile):
     """
 
     try:
+        #Verifica se o arquivo é um XML
         if file.content_type != "text/xml":
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Erro, arquivo com formato inválido, só é aceito 'text/xml'")
 
 
+        #Dá um nome para o arquivo recebido
 
         file.filename='diploma.xml'
+
         # Determina o caminho onde salvar o arquivo. 
         uploads_directory = "uploads"
         os.makedirs(uploads_directory, exist_ok=True)  # Cria a pasta se não existir
@@ -44,13 +46,16 @@ async def valida_diploma_MEC(file: UploadFile):
         # Define o caminho completo do arquivo no diretório
         file_path = os.path.join(uploads_directory, file.filename)
         
-        # Grava o conteúdo do arquivo no diretório
+        # Grava o conteúdo do arquivo no diretório chamado uploads
         with open(file_path, "wb") as buffer:
             buffer.write(await file.read())
         
         try:
+            #Envia o arquivo para ser validado no MEC
             resultado = validar_diploma_mec(file_path)
+            #Remove o arquivo da pasta
             os.remove(file_path)
+            #Se o xml for inválido retorna false, se for verdadeiro retorna true
             return JSONResponse(content={"valido": resultado})
             
         except HTTPException as e:

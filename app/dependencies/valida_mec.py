@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.expected_conditions import url_to_be
-from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException, TimeoutException, NoSuchElementException
 from fastapi import HTTPException, status
 import os
@@ -33,7 +32,7 @@ def validar_diploma_mec(file_path):
 
         options = Options()
         options.add_argument('--headless')
-        #options.add_argument('--no-sandbox')
+        options.add_argument('--no-sandbox')
         options.add_argument('--window-size=1920,1080') 
         options.add_argument('--disable-dev-shm-usage')
 
@@ -73,12 +72,12 @@ def validar_diploma_mec(file_path):
         #Pegando o texto da página que informa se está em conformidade ou inválido o diploma
         elementos=str(elementos.text).strip()
 
-        
+        #Se o diploma é válido, a página detalhes mostra essa informação
         if elementos == 'Diploma Digital em Conformidade':
             driver.quit()
             return True
         
-
+        #Se o diploma é inválido, a página detalhes mostra essa informação
         elif elementos == 'Diploma Digital Inválido':
             driver.quit()
             return False
