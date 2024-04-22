@@ -1,4 +1,4 @@
-# Valida_Diploma_xml
+# Valida Diploma no MEC
 
 Este é o repositório do Validador de Diploma do MEC, desenvolvido usando o Python 3.12.1 + Fast API + Selenium + Google Chrome e armazenado em container Docker.
 
