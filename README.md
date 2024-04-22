@@ -9,7 +9,7 @@ A Rota valida um diploma no MEC.
 
 Descrição da Solução:
 O MEC não tem uma API para validar diploma de alunos, então, essa é uma automação para contornar esse problema.
-Uma API que Recebe um arquivo de diploma no formato XML, envia-o para o site do MEC para validação e retorna o resultado da validação por meio de uma automação utilizando a biblitoeca Selenium. Basicamente, após receber o XML, o selenium abre o navegador Google Chrome, envia o arquivo, aguarda a validação do MEC e retorna o resultado. Esse resultado é enviado para o Endpoint, como retorno para quem está utilizando a API.
+Uma API que Recebe um arquivo de diploma no formato XML, envia-o para o site do MEC para validação e retorna o resultado da validação por meio de uma automação utilizando a biblioteca Selenium. Basicamente, após receber o XML, o selenium abre o navegador Google Chrome, envia o arquivo, aguarda a validação do MEC e retorna o resultado. Esse resultado é enviado para o Endpoint, como retorno para quem está utilizando a API.
 
 Site onde o XML é validado:
 
@@ -27,10 +27,16 @@ Retornos:
 
 ## Pré-requisitos
 
-Primeiro, atualize os pacotes da sua distribuição, no exemplo será no ubuntu 22.04
+Primeiro, baixe os pacotes da sua distribuição, no exemplo será no ubuntu 22.04
 
 ```bash
 sudo apt-get update 
+```
+
+Em seguida, atualize seus pacotes
+
+```bash
+sudo apt-get upgrade
 ```
 
 Instale pacotes para usar um repositório HTTPS
@@ -43,6 +49,7 @@ sudo apt-get install \
     gnupg \
     lsb-release
 ```
+
 
 Instale o Docker
 
