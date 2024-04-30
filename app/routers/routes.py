@@ -70,3 +70,8 @@ async def valida_diploma_MEC(file: UploadFile):
     
         return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"detail": str(e)})
    
+
+
+@router.get("/")
+async def read_root():
+    return {"message": "Hello, World"}
