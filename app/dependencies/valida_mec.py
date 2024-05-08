@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.expected_conditions import url_to_be
+from selenium.webdriver.support.expected_conditions import url_to_be, url_changes, url_contains, url_matches
 from selenium.common.exceptions import WebDriverException, TimeoutException, NoSuchElementException
 from fastapi import HTTPException, status
 import os
@@ -29,6 +29,7 @@ def validar_diploma_mec(file_path):
         url_validador = 'https://verificadordiplomadigital.mec.gov.br/diploma'
 
         url_resultado='https://verificadordiplomadigital.mec.gov.br/detalhes'
+        url_resultado_erro='https://verificadordiplomadigital.mec.gov.br/detalhes/erro'
 
         options = Options()
         options.add_argument('--headless')
@@ -56,31 +57,45 @@ def validar_diploma_mec(file_path):
 
         button.click()
         '''
-        Após inserir o arquivo e clicar em Verificar, é carregada a página detalhes que possui o resultado da verificação do diploma em XML 
+        Após inserir o arquivo e clicar em Verificar, é carregada a página detalhes ou uma pagina de erro que possui o resultado da verificação do diploma em XML 
         '''
-        #Aguardando a página detalhes carregar
-        wait.until(url_to_be(url_resultado))
-
-        '''
-        Colhendo a informação sobre o resultado da validação
-        True - Diploma Digital em Conformidade
-        False - Diploma Digital Inválido
-
-        '''
-        elementos=driver.find_element(By.XPATH ,'//*[@id="content"]/div/div[1]/div[2]/p')
-
-        #Pegando o texto da página que informa se está em conformidade ou inválido o diploma
-        elementos=str(elementos.text).strip()
-
-        #Se o diploma é válido, a página detalhes mostra essa informação
-        if elementos == 'Diploma Digital em Conformidade':
-            driver.quit()
-            return True
         
-        #Se o diploma é inválido, a página detalhes mostra essa informação
-        elif elementos == 'Diploma Digital Inválido':
-            driver.quit()
-            return False
+        
+        #Aguardando a página detalhes carregar
+        wait.until(url_changes(url_validador))
+        
+        #Verificando se a URL carregada foi a de Erro do XML 
+
+        try:
+            if driver.current_url == url_resultado_erro:
+                driver.quit()
+                return False
+        
+        #Verificando se a URL carregada foi a de Validaçaõ do XML
+        
+            if driver.current_url == url_resultado:
+                '''
+                Colhendo a informação sobre o resultado da validação
+                True - Diploma Digital em Conformidade
+                False - Diploma Digital Inválido
+
+                '''
+                elementos=driver.find_element(By.XPATH ,'//*[@id="content"]/div/div[1]/div[2]/p')
+
+                #Pegando o texto da página que informa se está em conformidade ou inválido o diploma
+                elementos=str(elementos.text).strip()
+
+                #Se o diploma é válido, a página detalhes mostra essa informação
+                if elementos == 'Diploma Digital em Conformidade':
+                    driver.quit()
+                    return True
+                
+                #Se o diploma é inválido, a página detalhes mostra essa informação
+                elif elementos == 'Diploma Digital Inválido':
+                    driver.quit()
+                    return False
+        except Exception as e:
+            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail = "Não foi possível fazer a Validação do Diploma")
          
     except NoSuchElementException as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Elemento não encontrado na página.")

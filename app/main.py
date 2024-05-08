@@ -10,7 +10,7 @@ app = FastAPI()
 #app.middleware("http")(log_requests)
 app.add_middleware(  
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"], #Permitir solicitações de qualquer origem
     allow_credentials=True,
     allow_methods=["*"], #Permitir todos os métodos (GET, POST)
     allow_headers=["*"], #Permitir todos os cabeçalhos
