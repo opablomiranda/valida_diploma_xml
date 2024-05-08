@@ -27,7 +27,6 @@ def validar_diploma_mec(file_path):
 
         #file_path = '/home/ubuntu/workspace/pmirandaf/valida_diploma_xml/app/dependencies/diploma-erro.xml'
         url_validador = 'https://verificadordiplomadigital.mec.gov.br/diploma'
-
         url_resultado='https://verificadordiplomadigital.mec.gov.br/detalhes'
         url_resultado_erro='https://verificadordiplomadigital.mec.gov.br/detalhes/erro'
 
@@ -61,18 +60,19 @@ def validar_diploma_mec(file_path):
         '''
         
         
-        #Aguardando a página detalhes carregar
+        #Aguardando a página carregar
         wait.until(url_changes(url_validador))
         
-        #Verificando se a URL carregada foi a de Erro do XML 
+        
 
         try:
+            #Verificando se a URL carregada foi a de Erro do XML 
             if driver.current_url == url_resultado_erro:
                 driver.quit()
                 return False
         
-        #Verificando se a URL carregada foi a de Validaçaõ do XML
         
+            #Verificando se a URL carregada foi a de Validaçaõ do XML
             if driver.current_url == url_resultado:
                 '''
                 Colhendo a informação sobre o resultado da validação
