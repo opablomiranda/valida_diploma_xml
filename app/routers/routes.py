@@ -32,7 +32,7 @@ async def valida_diploma_MEC(file: UploadFile):
     try:
         #Verifica se o arquivo é um XML
         if file.content_type != "text/xml":
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Erro, arquivo com formato inválido, só é aceito 'text/xml'")
+            raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail=f"Erro, arquivo com formato inválido, só é aceito 'text/xml'")
 
 
         #Dá um nome para o arquivo recebido

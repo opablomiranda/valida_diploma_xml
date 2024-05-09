@@ -89,7 +89,6 @@ def validar_diploma_mec(file_path):
                 if elementos == 'Diploma Digital em Conformidade':
                     driver.quit()
                     return True
-                
                 #Se o diploma é inválido, a página detalhes mostra essa informação
                 elif elementos == 'Diploma Digital Inválido':
                     driver.quit()
