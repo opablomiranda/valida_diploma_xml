@@ -62,7 +62,7 @@ async def valida_diploma_MEC(file: UploadFile):
             os.remove(file_path)
             raise e
 
-    except HTTPException as e:
+    except HTTPException as e:  
     
         return JSONResponse(status_code=e.status_code, content={"detail": e.detail})
 
@@ -71,7 +71,3 @@ async def valida_diploma_MEC(file: UploadFile):
         return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"detail": str(e)})
    
 
-
-@router.get("/")
-async def read_root():
-    return {"message": "Hello, World"}
