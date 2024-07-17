@@ -64,7 +64,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 Após isso, clone o projeto para um diretório
 
 ```bash
-https://github.com/opablomiranda/valida_diploma_xml
+git clone https://github.com/opablomiranda/valida_diploma_xml
 ```
 
 Iremos construir o container que contém todas as dependências para a aplicação funcionar; Acesse o diretório e digite:
