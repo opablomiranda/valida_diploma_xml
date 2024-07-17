@@ -64,7 +64,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 Após isso, clone o projeto para um diretório
 
 ```bash
-git clone https://gitlab.com/cromg/valida-diploma-xml.git
+https://github.com/opablomiranda/valida_diploma_xml
 ```
 
 Iremos construir o container que contém todas as dependências para a aplicação funcionar; Acesse o diretório e digite:
