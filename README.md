@@ -88,7 +88,7 @@ http://127.0.0.1:8000/docs
 
 curl -X 'POST'
 
-'http://127.0.0.1:8000/diploma_upload/'
+'http://127.0.0.1:8000/diplomas/validate'
 
 -H 'accept: application/json'
 
