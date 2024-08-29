@@ -1,6 +1,6 @@
 # Valida Diploma no MEC
 
-Este é o repositório do Validador de Diploma do MEC, desenvolvido usando o Python 3.12.1 + Fast API + Selenium + Google Chrome e armazenado em container Docker.
+Este é o repositório do Validador de Diploma do MEC, desenvolvido usando o Python 3.12.1 + Fast API + Selenium Webdriver + Google Chrome e armazenado em container Docker.
 
 DOCs: 
 
@@ -20,7 +20,7 @@ https://docs.docker.com/
 A Rota valida diplomas de forma assíncrona no MEC.
 
 Descrição da Solução:
-Havia a necessidade de validar milhares de diplomas de alunos no MEC, mas o MEC não tem uma API para validar diploma de alunos, então, essa é uma automação para contornar esse problema. Uma API que Recebe um arquivo de diploma no formato XML, envia-o para o site do MEC para validação e retorna o resultado da validação por meio de uma automação utilizando a biblioteca Selenium. Basicamente, após receber o XML por uma rota no FastAPI em Python, o selenium abre o navegador Google Chrome, envia o arquivo, aguarda a validação do MEC e retorna o resultado. Esse resultado é enviado para o Endpoint, como retorno para quem está utilizando a API.
+Havia a necessidade de validar milhares de diplomas de alunos no MEC, mas o MEC não tem uma API para validar diploma de alunos, então, essa é uma automação para contornar esse problema. Uma API que Recebe um arquivo de diploma no formato XML, envia-o para o site do MEC para validação e retorna o resultado da validação por meio de uma automação utilizando a biblioteca Selenium. Basicamente, após receber o XML por uma rota no FastAPI em Python, o selenium abre o navegador Google Chrome (Web Driver), envia o arquivo, aguarda a validação do MEC e retorna o resultado. Esse resultado é enviado para o Endpoint para quem está utilizando a API. 
 
 
 Site onde o XML é validado:
