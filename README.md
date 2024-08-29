@@ -79,7 +79,7 @@ docker run -d -p 8000:8000 valida_diploma_xml ou ID do container
 ```
 Pronto, o container subiu, para visualizar a interface do Swagger no navegador acesse:
 
-## Acessando via OpenAPI:
+## Acessando via Swagger:
 
 http://127.0.0.1:8000/docs
 
