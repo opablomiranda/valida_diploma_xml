@@ -9,7 +9,7 @@ import os
 router = APIRouter()    
 
 
-@router.post("/diploma_upload/", tags=["Diplomas"] ,status_code=status.HTTP_200_OK, response_model=ValidationResult)
+@router.post("/diplomas/validate", tags=["Diplomas"] ,status_code=status.HTTP_200_OK, response_model=ValidationResult)
 async def valida_diploma_MEC(file: UploadFile):
     """
     A Rota Valida um diploma no MEC.\n
@@ -23,7 +23,7 @@ async def valida_diploma_MEC(file: UploadFile):
         "valido" : true - Indica um diploma XML validado no MEC que está em Conformidade\n
         "valido" : false - indica um diploma XML validado no MEC que está Inválido
     curl -X 'POST'  \n
-    'http://127.0.0.1:8000/diploma_upload/'  \n
+    'http://127.0.0.1:8000/diplomas/validate'  \n
     -H 'accept: application/json'  \n
     -H 'Content-Type: multipart/form-data'  \n
     -F 'file=@diploma.xml;type=text/xml'            
