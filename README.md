@@ -1,6 +1,6 @@
 
 
-![Texto alternativo](https://www.gov.br/transferegov/pt-br/noticias/noticias/arquivos-e-imagens/mec.png/@@images/image.png)
+![#Image](https://www.gov.br/transferegov/pt-br/noticias/noticias/arquivos-e-imagens/mec.png/@@images/image.png)
 
 # Valida Diploma no MEC
 
