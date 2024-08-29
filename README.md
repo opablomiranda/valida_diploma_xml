@@ -1,3 +1,7 @@
+
+
+![Texto alternativo](https://www.gov.br/transferegov/pt-br/noticias/noticias/arquivos-e-imagens/mec.png/@@images/image.png)
+
 # Valida Diploma no MEC
 
 Este é o repositório do Validador de Diploma do MEC, desenvolvido usando o Python 3.12.1 + Fast API + Selenium Webdriver + Google Chrome e armazenado em container Docker.
